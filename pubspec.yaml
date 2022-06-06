@@ -1,7 +1,7 @@
 name: okru_oauth
 description: okru auth library
 version: 1.0.0
-repository:
+repository: "https://github.com/Olifemus/okru_oauth"
 
 environment:
   sdk: ">=2.16.2 <3.0.0"
