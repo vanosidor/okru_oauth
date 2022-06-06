@@ -17,7 +17,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="ok512001511452"
+                    android:host="ok{your app id here}"
                     android:scheme="okauth"/>
             </intent-filter>
         </activity>
