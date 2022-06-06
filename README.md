@@ -4,7 +4,7 @@ okru auth library
 
 ## Getting Started
 
-# Android setup 
+### Android setup 
 
 add 
 ```xml
@@ -26,7 +26,7 @@ add
 to Manifest 
 
 
-# IOs setup 
+### IOs setup 
 
 add 
 ```
@@ -60,5 +60,5 @@ override func application(_ app: UIApplication,
 ```
 inside AppDelegate class in same file
 
-## Example
+# Example
 to use example, you need to replace app id and app key inside both native parts(manifest and plist) and main.dart of example 
