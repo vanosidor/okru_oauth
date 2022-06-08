@@ -23,9 +23,16 @@ public class SwiftOkruOauthPlugin: NSObject, FlutterPlugin {
           OKSDK.initWith(settings)
           result(nil)
       case "auth":
-          OKSDK.authorize(withPermissions: ["VALUABLE_ACCESS"], success: { data in
-              result(data)
-          }, error: { error in result(error)})
+          OKSDK.authorize(
+            withPermissions: ["VALUABLE_ACCESS"],
+            success: { data in
+                result(data)
+                OKSDK.clearAuth()
+          },
+            error: { error in
+                result(error)
+                OKSDK.clearAuth()
+          })
       default:
           result(nil)
           
