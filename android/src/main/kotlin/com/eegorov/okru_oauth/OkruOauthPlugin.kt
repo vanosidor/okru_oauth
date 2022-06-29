@@ -23,7 +23,7 @@ class OkruOauthPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, PluginR
     private lateinit var channel: MethodChannel
     private lateinit var context: Context
     private lateinit var activity: Activity
-
+	private var isActive = false
     override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
         channel = MethodChannel(flutterPluginBinding.binaryMessenger, "okru_oauth")
         channel.setMethodCallHandler(this)
@@ -36,6 +36,7 @@ class OkruOauthPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, PluginR
                 okruController = OkruController(call.argument<String>("appID")
                         ?: "", call.argument<String>("appKey") ?: "", context, activity)
                 okruController.onInit()
+				isActive = true
                 result.success(null)
             }
             "auth" -> {
@@ -63,6 +64,8 @@ class OkruOauthPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, PluginR
     override fun onDetachedFromActivityForConfigChanges() {}
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?): Boolean {
+		if(!isActive) return true 
+		isActive = false
         val res = okruController.onActivityResult(requestCode, resultCode, data)
         return res ?: true
     }
